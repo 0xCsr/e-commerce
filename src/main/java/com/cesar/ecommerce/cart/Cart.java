@@ -2,6 +2,7 @@ package com.cesar.ecommerce.cart;
 
 import java.util.List;
 
+import com.cesar.ecommerce.BaseEntity;
 import com.cesar.ecommerce.user.User;
 
 import jakarta.persistence.Entity;
@@ -20,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Cart {
+public class Cart extends BaseEntity {
     
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
