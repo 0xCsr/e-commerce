@@ -1,9 +1,12 @@
 package com.cesar.ecommerce.cart;
 
+import java.util.List;
+
 import com.cesar.ecommerce.user.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,4 +26,6 @@ public class Cart {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     
+    @OneToMany(mappedBy = "cart")
+    List<CartItem> items;
 }
