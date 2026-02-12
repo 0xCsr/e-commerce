@@ -1,4 +1,4 @@
-package com.cesar.ecommerce.user;
+package com.cesar.ecommerce.user.dto;
 
 /**
  * Use this method only for receiving data from put or patch request,
