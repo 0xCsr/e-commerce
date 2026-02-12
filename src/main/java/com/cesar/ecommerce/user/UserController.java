@@ -3,6 +3,10 @@ package com.cesar.ecommerce.user;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cesar.ecommerce.user.dto.CreateUserDTO;
+import com.cesar.ecommerce.user.dto.UserDTO;
+import com.cesar.ecommerce.user.dto.UserResponseDTO;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -34,15 +38,15 @@ public class UserController {
     // TODO: remove this method, is just for visualization.
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> findAll() {
-        return ResponseEntity.status(HttpStatus.FOUND).body(userService.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<UserResponseDTO> findById(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.findById(id));
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     public ResponseEntity<UserResponseDTO> findByEmail(@PathVariable String email) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.findByEmail(email.trim()));
     }
@@ -52,6 +56,5 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.update(id, dto));
     }
 
-    // PUT
-    // 
+    // maybe impl/ patch method, i can use put method for now.
 }
