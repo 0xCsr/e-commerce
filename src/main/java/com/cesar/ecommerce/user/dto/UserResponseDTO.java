@@ -1,6 +1,8 @@
-package com.cesar.ecommerce.user;
+package com.cesar.ecommerce.user.dto;
 
 import java.util.UUID;
+
+import com.cesar.ecommerce.user.User;
 
 public record UserResponseDTO(
     UUID id,

@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.cesar.ecommerce.user.dto.CreateUserDTO;
+import com.cesar.ecommerce.user.dto.UserDTO;
+import com.cesar.ecommerce.user.dto.UserResponseDTO;
+
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
