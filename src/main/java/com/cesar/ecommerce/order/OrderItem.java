@@ -25,6 +25,10 @@ import lombok.Setter;
 public class OrderItem extends BaseEntity {
     
     @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
+
+    @ManyToOne
     @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
