@@ -39,16 +39,18 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDTO> findById(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.FOUND).body(userService.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findById(id));
     }
 
     @GetMapping("/{email}")
     public ResponseEntity<UserResponseDTO> findByEmail(@PathVariable String email) {
-        return ResponseEntity.status(HttpStatus.FOUND).body(userService.findByEmail(email.trim()));
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findByEmail(email.trim()));
     }
 
-    @PutMapping
-    public ResponseEntity<UserResponseDTO> putUser(@RequestBody)
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> update(@PathVariable UUID id, @RequestBody UserDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.update(id, dto));
+    }
 
     // PUT
     // 

@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
     
     private final UserRepository userRepository;
+    //private final PasswordEconder passwordEncoder;
 
     @Transactional
     public UserResponseDTO save(CreateUserDTO dto) {
@@ -55,5 +56,36 @@ public class UserService {
         return userRepository.findByEmail(email)
             .map(UserResponseDTO::fromEntity)
             .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    @Transactional
+    public UserResponseDTO update(UUID id, UserDTO dto) {
+        
+        User user = userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (dto.email() != null) {
+            user.setEmail(dto.email());
+        }
+
+        if (dto.password() != null) {
+            user.setHashPassword(/*passwordEncoder.encode(dto.password())*/ dto.password());
+        }
+
+        if (dto.firstName() != null) {
+            user.setFirstName(dto.firstName());
+        }
+
+        if (dto.lastName() != null) {
+            user.setLastName(dto.lastName());
+        }
+
+        return UserResponseDTO.fromEntity(userRepository.save(user));      
+    }
+
+    @Transactional
+    public String deleteById(UUID id) {
+        userRepository.deleteById(id);
+        return "user w/ id: " + id + " has been removed";
     }
 }
