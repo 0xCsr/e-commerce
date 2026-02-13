@@ -40,7 +40,8 @@ public class UserService {
         return new UserResponseDTO(
             user.getId(),
             user.getEmail(),
-            user.getFirstName()
+            user.getFirstName(),
+            user.getPermission()
         );
     }
 
@@ -91,5 +92,16 @@ public class UserService {
     public String deleteById(UUID id) {
         userRepository.deleteById(id);
         return "user w/ id: " + id + " has been removed";
+    }
+
+    @Transactional
+    public UserResponseDTO setAdmin(UUID id) {
+        
+        User user = userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setPermission(Role.ADMIN);
+
+        return UserResponseDTO.fromEntity(userRepository.save(user));
     }
 }
