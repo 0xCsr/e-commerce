@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 /**
  * Use this method only for receiving data from put or patch request,
@@ -23,7 +24,7 @@ public record ItemDTO(
     @Positive
     BigDecimal price,
 
-    @Positive
+    @PositiveOrZero
     int quantity
 ) {
     
