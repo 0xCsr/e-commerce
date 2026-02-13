@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
@@ -39,6 +40,12 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
+    }
+
+    // TODO: remove this, is just a impl/ for add ADMIN role for a user.
+    @PatchMapping("/id/{id}")
+    public ResponseEntity<UserResponseDTO> setAdmin(@PathVariable UUID id) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.setAdmin(id));
     }
 
     @GetMapping("/id/{id}")
