@@ -1,5 +1,6 @@
 package com.cesar.ecommerce.item;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -41,5 +42,12 @@ public class ItemService {
                 )
             )
         );
+    }
+
+    public List<ResponseItemDTO> findAll() {
+        return itemRepository.findAll()
+            .stream()
+            .map(ResponseItemDTO::fromEntity)
+            .toList();
     }
 }
