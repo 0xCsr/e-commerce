@@ -27,3 +27,30 @@ O projeto inclui backend configurado para servir funcionalidades comuns de ecomm
 
 - Java JDK 21+
 - Docker & Docker compose
+- Configurar .env na pasta raíz do projeto
+
+```bash
+# Estrutura do .env
+
+SPRING_DATASOURCE_URL=
+SPRING_DATASOURCE_USERNAME=
+SPRING_DATASOURCE_PASSWORD=
+SPRING_JPA_HIBERNATE_DDL_AUTO=
+
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+```
+
+```bash
+# Copiar o repositório
+git clone https://github.com/0xCsr/e-commerce.git
+
+# Entrar no diretório da pasta copiada
+cd e-commerce
+
+# Subir o SQL via docker
+docker-compose up --build
+```
+
+Depois do docker subir o SQL, basta rodar a aplicação.
