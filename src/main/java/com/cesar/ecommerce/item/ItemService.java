@@ -4,14 +4,17 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.cesar.ecommerce.item.dto.CreateItemDTO;
+import com.cesar.ecommerce.item.dto.ItemDTO;
 import com.cesar.ecommerce.item.dto.ResponseItemDTO;
 import com.cesar.ecommerce.user.Role;
 import com.cesar.ecommerce.user.User;
 import com.cesar.ecommerce.user.UserRepository;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -49,5 +52,22 @@ public class ItemService {
             .stream()
             .map(ResponseItemDTO::fromEntity)
             .toList();
+    }
+
+    public ResponseItemDTO update(UUID userId, UUID itemId, ItemDTO dto) {
+
+        Item item = itemRepository.findById(itemId)
+            .orElseThrow(() -> new RuntimeException("Item not found"));
+
+        if (!item.getUser().getId().equals(userId)) {
+            throw new RuntimeException("User id dont matches with item user owner");
+        }
+
+        if (dto.name() != null) item.setName(dto.name());
+        if (dto.description() != null) item.setDescription(dto.description());
+        if (dto.price() != null) item.setPrice(dto.price());
+        if (dto.quantity() > 0) item.setQuantity(dto.quantity());
+
+        return null;
     }
 }
