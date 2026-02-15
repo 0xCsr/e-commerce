@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,5 +41,10 @@ public class ItemController {
     @PatchMapping("/userId/{userId}/itemId/{itemId}")
     public ResponseEntity<ResponseItemDTO> update(@PathVariable UUID userId, @PathVariable UUID itemId, @RequestBody ItemDTO dto) {
         return ResponseEntity.status(HttpStatus.OK).body(itemService.update(userId, itemId, dto));
+    }
+
+    @DeleteMapping("/id/{id}")
+    public void delete(@PathVariable UUID id) {
+        itemService.delete(id);
     }
 }

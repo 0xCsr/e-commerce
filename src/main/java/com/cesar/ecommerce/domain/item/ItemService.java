@@ -68,4 +68,12 @@ public class ItemService {
 
         return null;
     }
+
+    @Transactional
+    public void delete(UUID id) {
+        Item item = itemRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Item not found"));
+
+        itemRepository.delete(item);
+    }
 }
